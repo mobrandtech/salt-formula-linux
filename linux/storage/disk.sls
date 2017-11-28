@@ -75,6 +75,7 @@ parted_set_bootable_{{ disk_name }}_{{ loop.index }}:
   - require:
     - module: create_partition_{{ disk_name }}_{{ loop.index }}
 
+
 {%- endif %}
 
 {%- endfor %}
