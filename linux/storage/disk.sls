@@ -61,6 +61,24 @@ mkfs_partition_{{ disk_name }}_{{ loop.index }}:
 
 {%- endfor %}
 
+{%- for partition in disk.get('partitions', []) %}
+
+{%- if partition.get('flag') and partition.flag == "boot" %}
+
+parted_set_bootable_{{ disk_name }}_{{ loop.index }}:
+  module.run:
+  - name: partition.set
+  - device: {{ disk_name }}
+  - minor: {{ loop.index }}
+  - flag: boot
+  - state: "on"
+  - require:
+    - module: create_partition_{{ disk_name }}_{{ loop.index }}
+
+{%- endif %}
+
+{%- endfor %}
+
 {%- endfor %}
 
 {%- endif %}
