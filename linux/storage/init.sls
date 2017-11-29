@@ -13,7 +13,7 @@ include:
 {%- if storage.lvm|length > 0 %}
 - linux.storage.lvm
 {%- endif %}
-{%- if storage.extfs|length > 0 %}
+{%- if storage.extfs and storage.extfs|length > 0 %}
 - linux.storage.extfs
 {%- endif %}
 {%- if storage.mount|length > 0 %}
