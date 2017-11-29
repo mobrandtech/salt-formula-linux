@@ -10,6 +10,7 @@ mdadm:
 
 raid_{{ raid_name }}:
   raid.present:
+    - name: {{ raid_name }}
     - level: {{ level }}
     - run: True
     - devices:
