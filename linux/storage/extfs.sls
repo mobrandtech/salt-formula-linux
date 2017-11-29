@@ -7,7 +7,7 @@ xfsprogs:
 {%- for disk_name, disk in storage.extfs.iteritems() %}
 {%- set disk_name = disk.name|default(disk_name) %}
 {%- set fs_type = disk.get('type', 'ext4') %}
-{%- set dev_name = disk_name|split('/')|last %}
+{%- set dev_name = disk_name.split('/')|last %}
 
 mkfs_{{ disk_name }}_{{ fs_type }} :
   module.run:
