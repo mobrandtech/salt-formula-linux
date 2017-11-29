@@ -3,8 +3,6 @@
 
 {%- for name, mount in storage.mount|dictsort %}
 
-{%- if mount.enabled %}
-
 {%- if not mount.file_system in ['nfs', 'nfs4', 'cifs', 'tmpfs'] %}
 
 mkfs_{{ mount.device}}:
@@ -52,7 +50,6 @@ linux_storage_nfs_packages:
       - mount: {{ mount.path }}
 {%- endif %}
 
-{%- endif %}
 
 {%- endfor %}
 
