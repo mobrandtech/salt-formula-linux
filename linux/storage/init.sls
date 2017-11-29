@@ -1,5 +1,7 @@
 {%- from "linux/map.jinja" import storage with context %}
-{%- if storage.mount|length > 0 or storage.swap|length > 0 or storage.multipath.enabled or storage.disk|length > 0 or storage.lvm|length > 0 or storage.loopback|length > 0 or storage.raid|length > 0 or ( storage.extfs and storage.extfs|length > 0) %}
+
+{%- if storage.mount|length > 0 or storage.swap|length > 0 or storage.multipath.enabled or storage.disk|length > 0 or storage.lvm|length > 0 or storage.loopback|length > 0 or storage.raid|length > 0 or ( storage.extfs is defined and storage.extfs|length > 0) %}
+
 include:
 {%- if storage.loopback|length > 0 %}
 - linux.storage.loopback
@@ -13,7 +15,7 @@ include:
 {%- if storage.lvm|length > 0 %}
 - linux.storage.lvm
 {%- endif %}
-{%- if storage.extfs and storage.extfs|length > 0 %}
+{%- if storage.extfs is defined and storage.extfs|length > 0 %}
 - linux.storage.extfs
 {%- endif %}
 {%- if storage.mount|length > 0 %}
@@ -25,4 +27,5 @@ include:
 {%- if storage.multipath.enabled %}
 - linux.storage.multipath
 {%- endif %}
+
 {%- endif %}
