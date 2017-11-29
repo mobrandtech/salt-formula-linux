@@ -13,10 +13,11 @@ raid_{{ raid_name }}:
     - level: {{ level }}
     - run: True
     - devices:
-{%- for dev_name in storage.raid.devices %}
+{%- for dev_name in raid.devices %}
       - {{ dev_name }}
 {%- endfor  %}
 
 
 {%- endfor %}
 
+{%- endif %}

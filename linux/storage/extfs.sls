@@ -20,3 +20,4 @@ mkfs_{{ disk_name }}_{{ fs_type }} :
 
 {%- endfor %}
 
+{%- endif %}
