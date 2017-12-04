@@ -19,7 +19,7 @@ create_disk_label_{{ disk_name }}:
   - require:
     - pkg: parted
 
-{% set end_size = 1 -%}
+{% set end_size = 2 -%}
 
 {%- for partition in disk.get('partitions', []) %}
 
