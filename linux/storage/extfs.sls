@@ -10,12 +10,14 @@ xfs_progs_{{ disk_name }}_{{ fs_type }}:
   pkg.installed:
     - name: xfsprogs
 
+# Removed unless because we want always to format it 
+#- unless: "lsblk -fs {{ disk_name }} -o name,fstype | grep -i {{ dev_name }} | grep -i {{ fs_type }}"
+
 mkfs_{{ disk_name }}_{{ fs_type }} :
   module.run:
   - name: extfs.mkfs
   - device: {{ disk_name }}
   - fs_type: {{ fs_type }}
-  - unless: "lsblk -fs {{ disk_name }} -o name,fstype | grep -i {{ dev_name }} | grep -i {{ fs_type }}"
   - require:
     - pkg: xfs_progs_{{ disk_name }}_{{ fs_type }}
 
