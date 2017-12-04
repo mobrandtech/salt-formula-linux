@@ -71,7 +71,7 @@ parted_set_bootable_{{ disk_name }}_{{ loop.index }}:
   - device: {{ disk_name }}
   - minor: {{ loop.index }}
   - flag: boot
-  - state: "on"
+  - m_state: "on"
   - require:
     - module: create_partition_{{ disk_name }}_{{ loop.index }}
 
